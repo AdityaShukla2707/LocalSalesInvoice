@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocalSalesInvoiceRepo\LocalSalesInvoiceRepo.csproj" />
+  </ItemGroup>
+
 </Project>

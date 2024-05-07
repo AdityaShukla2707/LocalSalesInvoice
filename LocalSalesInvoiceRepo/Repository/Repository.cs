@@ -26,7 +26,12 @@ namespace LocalSalesInvoiceRepo.Repository
         #endregion
         public void Delete(T entity)
         {
-
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _entities.Remove(entity);
+            SaveChanges();
         }
         public void Insert(T entity)
         {
@@ -46,21 +51,23 @@ namespace LocalSalesInvoiceRepo.Repository
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _entities.Update(entity);
+            SaveChanges();
         }
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         async Task<T> IRepository<T>.Get(int id)
         {
-            throw new NotImplementedException();
+            return await _entities.FindAsync(id);
         }
 
         async Task<IEnumerable<T>> IRepository<T>.GetAll()
         {
-            throw new NotImplementedException();
+            return await _entities.ToListAsync();
         }
     }
 }

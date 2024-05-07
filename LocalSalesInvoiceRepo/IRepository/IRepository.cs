@@ -8,7 +8,7 @@ namespace LocalSalesInvoiceRepo.IRepository
 {
     //public interface IRepository<T>: This declares a public interface called IRepository that
     //is generic, meaning it can work with any type T
-    public interface IRepository<T> :IDisposable
+    public interface IRepository<T> 
     {
        Task<T> Get(int id);
        Task<IEnumerable<T>> GetAll();

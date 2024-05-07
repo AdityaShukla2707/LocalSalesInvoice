@@ -13,7 +13,6 @@ namespace LocalSalesInvoiceService.ICustomServices
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void Remove(T entity);
 
     }
 }

@@ -20,17 +20,27 @@ namespace LocalSalesInvoiceService.CustomServices
 
         public void Delete(Country entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (entity != null)
+                {
+                    _countryRepository.Delete(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to delete country.", ex);
+            }
         }
 
-        public Task<Country> Get(int Id)
+        public async  Task<Country> Get(int Id)
         {
-            throw new NotImplementedException();
+            return await _countryRepository.Get(Id);
         }
 
-        public Task<IEnumerable<Country>> GetAll()
+        public async Task<IEnumerable<Country>> GetAll()
         {
-            throw new NotImplementedException();
+           return await _countryRepository.GetAll();
         }
 
         public void Insert(Country entity)
@@ -52,14 +62,21 @@ namespace LocalSalesInvoiceService.CustomServices
             }
         }
 
-        public void Remove(Country entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Update(Country entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (entity != null)
+                {
+                    _countryRepository.Update(entity);
+                    _countryRepository.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update country.", ex);
+            }
         }
     }
 }

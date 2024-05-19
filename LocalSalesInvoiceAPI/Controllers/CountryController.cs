@@ -30,7 +30,7 @@ namespace LocalSalesInvoiceAPI.Controllers
             try
             {
                 _customServices.Insert(country);
-                return Ok("Country created successfully.");
+                return new JsonResult("Country created successfully.");
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace LocalSalesInvoiceAPI.Controllers
             try
             {
                 var countries = await _customServices.GetAll();
-                return Ok(countries);
+                return new JsonResult(countries);
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace LocalSalesInvoiceAPI.Controllers
                 {
                     return NotFound("Country not found.");
                 }
-                return Ok(country);
+                return new JsonResult(country);
             }
             catch (Exception ex)
             {
@@ -71,11 +71,11 @@ namespace LocalSalesInvoiceAPI.Controllers
         }
 
         [HttpPut(nameof(UpdateCountry))]
-        public async Task<IActionResult> UpdateCountry(int id, [FromBody] Country country)
+        public async Task<IActionResult> UpdateCountry([FromBody] Country country)
         {
             try
             {
-                var existingCountry = await _customServices.Get(id);
+                var existingCountry = await _customServices.Get(country.Id);
                 if (existingCountry == null)
                 {
                     return NotFound("Country not found.");
@@ -87,7 +87,7 @@ namespace LocalSalesInvoiceAPI.Controllers
 
                 _customServices.Update(existingCountry);
 
-                return Ok("Country updated successfully.");
+                return new JsonResult("Country updated successfully.");
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace LocalSalesInvoiceAPI.Controllers
 
                 _customServices.Delete(country);
 
-                return Ok("Country deleted successfully.");
+                return new JsonResult("Country deleted successfully.");
             }
             catch (Exception ex)
             {

@@ -19,14 +19,11 @@ namespace LocalSalesInvoiceDOM.Models
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
 
-        [ForeignKey("CityId")]
-        public virtual City City { get; set; }
+        public int CityId { get; set; }
         public int ZipCode { get; set; }
         public int MobileNo { get; set; }
         public string UIDNumber { get; set; }
-       
-        [ForeignKey("UserTypeId")]
-        public virtual UserType UserType { get; set; }
+        public int UserTypeId { get; set; }
         public int IsActive { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }

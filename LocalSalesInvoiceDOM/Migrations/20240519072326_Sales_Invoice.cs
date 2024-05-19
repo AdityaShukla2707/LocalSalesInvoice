@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocalSalesInvoiceDOM.Migrations
 {
     /// <inheritdoc />
-    public partial class POC_TEST_Db : Migration
+    public partial class Sales_Invoice : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,9 @@ namespace LocalSalesInvoiceDOM.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    CountryCode = table.Column<string>(type: "char(2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,8 +32,8 @@ namespace LocalSalesInvoiceDOM.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    code = table.Column<string>(type: "char(1)", nullable: false),
                     IsActive = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -47,10 +47,10 @@ namespace LocalSalesInvoiceDOM.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false),
-                    StateCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    StateCode = table.Column<string>(type: "char(3)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,8 +69,8 @@ namespace LocalSalesInvoiceDOM.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityCode = table.Column<string>(type: "char(3)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

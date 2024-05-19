@@ -62,6 +62,10 @@ namespace LocalSalesInvoiceService.CustomServices
             }
         }
 
+        public void Remove(Country entity)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Update(Country entity)
         {

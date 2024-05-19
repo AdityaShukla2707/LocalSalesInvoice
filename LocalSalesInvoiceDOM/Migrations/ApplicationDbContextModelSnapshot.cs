@@ -217,43 +217,35 @@ namespace LocalSalesInvoiceDOM.Migrations
 
             modelBuilder.Entity("LocalSalesInvoiceDOM.Models.City", b =>
                 {
-                    b.HasOne("LocalSalesInvoiceDOM.Models.State", "State")
+                    b.HasOne("LocalSalesInvoiceDOM.Models.State", null)
                         .WithMany()
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("LocalSalesInvoiceDOM.Models.State", b =>
                 {
-                    b.HasOne("LocalSalesInvoiceDOM.Models.Country", "Country")
+                    b.HasOne("LocalSalesInvoiceDOM.Models.Country", null)
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("LocalSalesInvoiceDOM.Models.User", b =>
                 {
-                    b.HasOne("LocalSalesInvoiceDOM.Models.City", "City")
+                    b.HasOne("LocalSalesInvoiceDOM.Models.City", null)
                         .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LocalSalesInvoiceDOM.Models.UserType", "UserType")
+                    b.HasOne("LocalSalesInvoiceDOM.Models.UserType", null)
                         .WithMany()
                         .HasForeignKey("UserTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("City");
-
-                    b.Navigation("UserType");
                 });
 #pragma warning restore 612, 618
         }

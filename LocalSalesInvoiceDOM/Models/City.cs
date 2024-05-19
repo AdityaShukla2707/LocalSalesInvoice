@@ -14,8 +14,7 @@ namespace LocalSalesInvoiceDOM.Models
         public string CityCode { get; set; }
         public string Name { get; set; }    
         
-        [ForeignKey("StateId")]
-        public virtual State State { get; set; }
+        public int StateId { get; set; }
          
         
 

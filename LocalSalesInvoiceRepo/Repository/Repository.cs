@@ -1,4 +1,5 @@
 ﻿using LocalSalesInvoiceDOM.Data;
+using LocalSalesInvoiceDOM.Models;
 using LocalSalesInvoiceRepo.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Dynamic.Core;
+
 
 namespace LocalSalesInvoiceRepo.Repository
 {
@@ -67,7 +70,40 @@ namespace LocalSalesInvoiceRepo.Repository
 
         async Task<IEnumerable<T>> IRepository<T>.GetAll()
         {
-            return await _entities.ToListAsync();
+
+    //        var usersWithFriends = _context.Countries
+    //.GroupJoin(_context.States, u => u.Id, f => f.CountryId, (u, f) => new
+    //{
+    //    Countries = u,
+    //    States = f.Join(_context.Countries, f1 => f1.CountryId, u1 => u1.Id,
+    //        (f1, u1) => u1)
+    //})
+    //.ToList();
+
+           return await _entities.ToListAsync();
+           
+        }
+
+        public IQueryable<dynamic> PerformDynamicJoins(List<string> entities, List<string> joinConditions)
+        {
+            if (entities == null || !entities.Any() || joinConditions == null || !joinConditions.Any())
+                throw new ArgumentException("Entities and join conditions cannot be null or empty.");
+
+            IQueryable query = _context.Set(Type.GetType($"Namespace.{entities[0]}"));
+
+            for (int i = 1; i < entities.Count; i++)
+            {
+                string entityName = entities[i];
+                string joinCondition = joinConditions[i - 1];
+
+                Type entityType = Type.GetType($"Namespace.{entityName}");
+                query = query.Join(_context.Set(entityType),
+                                   joinCondition,
+                                   $"new({joinCondition})",
+                                   (outer, inner) => new { outer, inner });
+            }
+
+            return (IQueryable<dynamic>)query;
         }
     }
 }

@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 #region Service Injected
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICustomServices<Country>, CountryServices>();
+builder.Services.AddScoped<ICustomServices<State>, StateServices>();
 #endregion
 var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(ConnectionString));
